@@ -1,3 +1,6 @@
+/**
+    O(nmlog(m)), n numero de inputs, m numero de freshamns
+*/
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -22,6 +25,7 @@ int main () {
             for (int j=0; j < 5; j++) {
                 a += to_string(x[j]) + " ";
             }
+
             map<string, int>::iterator it = m.find(a);
 
             if (it != m.end()) 
