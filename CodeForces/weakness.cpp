@@ -22,8 +22,8 @@ int main() {
 
 	double m1,m2;
 	double maxg, max2g;
-	
-	for(int j= 0; j < 100; j++) {
+
+	for(int j = 0; j < 100; j++) {
 		double m1 = l + (h-l) / 3;
 		double m2 = h - (h-l) / 3;
 

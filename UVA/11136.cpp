@@ -1,3 +1,9 @@
+/**
+    O(nlogn), sendo n o número de bills.
+
+    Em cada dia vamos adicionando os valores das faturas e no final de cada dia retiramos a maior e mais pequena do set e subtraimos. O valor obtido vai ser somado ao total.
+*/
+
 #include <iostream>
 #include <set>
 #include <vector>

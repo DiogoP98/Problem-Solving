@@ -1,3 +1,10 @@
+/**
+    O(m * nlogn), n é o número de registos e m o núermo de queries.
+    Guardamos numa priority_queue os pares (tempo,id), onde tempo é o tempo que demora a retornar o resultado. Mantemos também num mapa o tempo de cada id.
+    Executamos depois as m queries retirando sempre o primeiro elemento da priority_queue, e voltando-o a adicionar com o tempo atual mais o tempo que ele demora
+    a retornar o resultado(valor que está guardado no mapa). 
+*/
+
 #include <iostream>
 #include <queue>
 #include <functional>

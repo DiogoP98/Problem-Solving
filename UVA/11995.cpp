@@ -1,3 +1,10 @@
+/**
+    O(nlog(n))
+
+    Para cada operação vamos adicionado ou removendo de cada uma das estruturas de dados. Guardamos também um booleano para cada estrutura e cada vez que uma operação esteja errada
+    mudamos o valor desse booleano. No fim é só verificar o valor de cada booleano.
+*/
+
 #include <iostream>
 #include <cstdio>
 #include <queue>

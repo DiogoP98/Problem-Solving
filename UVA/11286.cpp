@@ -1,5 +1,9 @@
 /**
-    O(nmlog(m)), n numero de inputs, m numero de freshamns
+    O(nlog(n)), n numero de caloiros
+    
+    Para cada caloiro lemos todas as cadeiras em que está inscrito e formamos uma string que contem todos os codigos das cadeiras, estando estes ordenados. 
+    Estas strings são adicionadas a um map<string,int> onde a cada string está-lhe atribuida o número de vezes que ocorre.
+    Depois é só percorrer o mapa e encontrar o máximo.
 */
 #include <bits/stdc++.h>
 

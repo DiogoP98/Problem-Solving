@@ -1,3 +1,11 @@
+/**
+    O(nlog(n)), n é número máximo entre o número de green lemmings e blue lemmings.
+
+    Inserimos os lemmings em dois multisets, um para os verdes e outro para os azuis. Depois, enquanto existirem lemmings nos dois lados, vamos simular as batalhas, nos k campos de batalha
+    ou até já não existirem lemmings disponiveis. Guardmos os valores de cada batalha num array intermedio e no final de cada batalha adicionamos, caso existam, lemmings aos sets correspondentes
+    tendo em conta os resultados das batalhas.
+*/
+
 #include <iostream>
 #include <set>
 #include <vector>
