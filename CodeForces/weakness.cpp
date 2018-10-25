@@ -7,7 +7,7 @@ int main() {
 	int n;
 	cin >> n;
 
-	vector<int> v(n);
+	vector<int> v(n); //os valores originais
 	double l = 15000, h = -15000;
 
 	for (int i = 0; i < n; i++) {
@@ -30,7 +30,7 @@ int main() {
 		vector<double> v2(n);
 		vector<double> v3(n);
 		for(int i = 0; i < n; i++) {
-			v2[i] = v[i] - m1;
+			v2[i] = v[i] - m1; //valores intermedios
 			v3[i] = v[i] - m2;
 		}
 
@@ -45,13 +45,13 @@ int main() {
 			if(count > maxp)
 				maxp = count;
 			
-			if(count< 0)
+			if(count < 0)
 				count = 0;
 
 			if(count2 > max2p)
 				max2p = count2;
 
-			if(count2< 0)
+			if(count2 < 0)
 				count2 = 0;
 		}
 
@@ -85,6 +85,7 @@ int main() {
 		else
 			h = m2;
 	}
+	
 	printf("%.16f\n",maxg);
 
 	return 0;
