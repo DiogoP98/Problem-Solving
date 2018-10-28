@@ -1,3 +1,12 @@
+/**
+
+	Explicação: Dividimos o array inicial em sqrt(n) partes e guardamos num array de duas dimensões. Cada sub-array desse array tem as posições
+	de x a x+sqrt(n) ordenadas por ordem crescente. Assim quando fizermos uma query sobre um intervalo, se o intervalo for um sub-array completo,
+	apenas temos de encontrar a posição até á qual os números são menores do que o número da query (obtido com upper_bound) e subtrair a posição
+	inicial do vetor. Se não for um sub-array completo simplesmente percorremos até um limite superior e analisamos as posições tendo por base 
+	o array inicial, até encontrarmos um limite inferior. Quando isto acontece aplicamos o método anterior.
+	Para dar update simplesmente procaramos em que sub-array está a posição que queremos alterar e voltamos a cria-lo e ordena-lo. 
+*/
 #include <cstdlib>
 #include <cstdio>
 #include <vector>
