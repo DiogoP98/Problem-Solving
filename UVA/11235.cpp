@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define MAX 100000005
+#define MAX 2000005
 
 vector<int> v(MAX);
 vector<int> st(MAX);
@@ -20,28 +20,16 @@ int merge(int a, int b) {
 
 void build(int node, int start, int end) {
 	if (start == end)
-		st[node] = 1;
+		st[node] = freq[start];
 
 	else {
 		int m = start + (end-start)/2;
 		build(node*2,start, m);
 		build(node*2+1,m+1, end);
-		st[node] = merge(st[node*2], st[node*2+1]);
-
-		if(lbound[start] == lbound[end])
-			st[node] = max(st[node], );
-
-		if(lbound[end] > lbound[start]) {
-			int fs = rbound[start]-start+1;
-			int ss = end-lbound[end]+1;
-			if (start == 6 && end == 7) {
-				cout << ss << " " << fs << endl;
-			}
-			st[node] = max(st[node], max(fs,ss));
-		}
+		st[node] = merge(st[node*2], st[node*2+1]);		
 	}
 
-	printf("%d [%d,%d] = %d\n", node, start, end, st[node]);
+	//printf("%d [%d,%d] = %d\n", node, start, end, st[node]);
 }
 
 int query(int node, int start, int end, int x, int y) {
@@ -84,20 +72,31 @@ int main() {
 		for(int j = n ; j >= start; j--) { 
 			freq[j] = count;
 			rbound[j] = n;
-			rbound[j] = start;
+			lbound[j] = start;
 		}
-
-		for(int j = 1 ; j <= n; j++) cout << freq[j] << endl;
 
 		build(1,1,n);
 
 		for(int i = 0; i < q; i++) {
 			int x, y;
 			cin >> x >> y;
-			//int k = query(1,1,n,x,y);
+			int l1=0, l2=0; 
 
+			if(rbound[x] == rbound[y]) {
+				cout << y-x+1 << endl;
+				continue;
+			}
 
-			//cout << k << endl;
+			if(x <= rbound[x])
+				l1 = rbound[x] - x + 1;
+
+			if(y >= lbound[y])
+				l2 = y - lbound[y] + 1;
+
+			int k = query(1,1,n,rbound[x]+1,lbound[y]-1);
+			int a = max(k, max(l2,l1));
+
+			cout << a << endl;
 		}
 	}
 

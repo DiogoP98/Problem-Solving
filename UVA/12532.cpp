@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define MAX 200000000
+#define MAX 20000005
 
 vector<int> v(MAX);
 vector<int> st(MAX);
@@ -65,10 +65,10 @@ int main() {
 	int n, k;
 
 	while(scanf("%d", &n) != EOF) {
-		cin  >> k;
+		scanf("%d", &k);
 
 		for(int i = 1; i <= n ; i++){ 
-			cin >> v[i];
+			scanf("%d", &v[i]);
 			if(v[i] > 0) v[i] = 1;
 			else if(v[i] < 0) v[i] = -1;
 			else v[i] = 0;
@@ -79,11 +79,11 @@ int main() {
 		build(1,1,n);
 
 		for(int i = 0; i < k; i++) {
-			string s;
-			cin >> s;
+			char s[2];
+			scanf("%s",s);
 			int y,l;
 
-			if(s == "C") {
+			if(s[0] == 'C') {
 				cin >> y >> l;
 				if(l > 0) l = 1;
 				else if(l < 0) l = -1;
@@ -100,9 +100,9 @@ int main() {
 			else {
 				cin >> y >> l;
 				int p = query(1,1,n,y,l);
-				if (p < 0) cout << '-';
-				else if(p > 0) cout << '+';
-				else cout << '0';
+				if (p < 0) printf("-");
+				else if(p > 0) printf("+");
+				else printf("0");
 			}
 		}
 		cout << endl;
