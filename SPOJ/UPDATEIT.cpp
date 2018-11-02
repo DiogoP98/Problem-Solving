@@ -1,3 +1,12 @@
+/**
+	Complexidade: O(logn). 
+	
+	Explicação: Para fazermos range update, vamos atualizar todos os nós pais de l e l, e depois subtrair o valor que adicionamos aos nós que são maiores que r, ou seja,
+	que não pertencem ao intervalo.
+	A operação de query é uma sum nromal em BITs.
+*/
+
+
 #include <cstdio>
 #include <vector>
 #include <algorithm>
@@ -11,28 +20,24 @@ int n;
 vector<int> bitree(MAX);
 
 void update(int l, int r, int val) {
-	for(int i = l; i <= r; i++) {
-		i+=1;
-
-		while(i <= n) {
-			bitree[i] += val;
-
-			i += i & (-i);
-		}
+	while(l <= n) {
+		bitree[l] += val;
+		l += l & (-l); 
 	}
 
-	for(int i = 1; i <= n; i++) printf ("%d: %d\n", i, bitree[i]);
-
-	printf("\n");
+	r+=1;
+	
+	while(r <= n) {
+		bitree[r] -= val;
+		r += r & (-r);
+	}
 }
 
 int query(int i) {
+	i+= 1;
 	int sum = 0;
-	i += 1;
-
 	while(i > 0) {
 		sum += bitree[i];
-
 		i -= i & (-i);
 	}
 
@@ -56,7 +61,7 @@ int main() {
 		for(int j = 0; j < u; j++) {
 			int l, r, val;
 			scanf("%d %d %d", &l, &r, &val);
-			update(l,r,val);
+			update(l+1,r+1,val);
 		}
 
 		int q;
