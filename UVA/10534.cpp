@@ -1,11 +1,44 @@
 #include <iostream>
 #include <cstdio>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
-int seq(vector<int> v,int pos) {
+void bsearch(vector<int>& num, vector<int>& index, int v, int pos) {
+	int l = 0;
+	int h = num.size()-1;
 
+	while(l <= h) {
+		int m = l + (h-l)/2;
+		if(num[m] == v) {
+			index[m] = pos;
+			return;
+		}
+
+		if(num[m] > v) l = m+1;
+		else h = m-1;
+	}
+	index[l] = pos;
+	num[l] = v;
+}
+
+vector<int> lis(vector<int> v) {
+	int size = (int) v.size();
+	vector<int> index(size,-1);
+	vector<int> num(size,-1);
+
+	for(int i = size-1; i >= 0; i--) {
+
+		if(v[i] > num[0]) {
+			index[0] = i;
+			num[0] = v[i];
+		}
+		else bsearch(num,index,v[i],i);
+
+	}
+
+	return index;
 }
 
 int main() {
@@ -19,10 +52,27 @@ int main() {
 			int x;
 			cin >> x;
 
-			values.push_back(x);
+			values[i] = x;
 		}
 
-		int longest = check seq(values, n-1);
+		vector<int> longest = lis(values);
+		reverse(values.begin(), values.end());
+		vector<int> longest2 = lis(values);
+
+		int ans = 0;
+
+		for(int i = 0; i < longest.size(); i++) {
+			if(longest[i] == -1)
+				break;
+
+			if(longest[i] == longest2[i])
+				ans = i+1;
+		}
+
+		if(ans == 0)
+			ans = 1;
+
+		cout << ans*2-1 << endl;
 	}
 	
 	return 0;

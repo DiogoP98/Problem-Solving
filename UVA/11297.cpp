@@ -1,3 +1,11 @@
+/**
+    Complexidade: 
+    
+    Ajudas: https://www.geeksforgeeks.org/two-dimensional-segment-tree-sub-matrix-sum/
+
+*/
+
+
 #include <iostream>
 #include <cstdlib>
 #include <vector>
