@@ -1,78 +1,68 @@
 #include <iostream>
-#include <cstdio>
 #include <vector>
 #include <algorithm>
+#include <climits>
 
-using namespace std;
+using namespace std;	
 
-void bsearch(vector<int>& num, vector<int>& index, int v, int pos) {
-	int l = 0;
-	int h = num.size()-1;
+int n;
 
-	while(l <= h) {
-		int m = l + (h-l)/2;
-		if(num[m] == v) {
-			index[m] = pos;
-			return;
-		}
+vector<int> sequence(vector<int> values) {
+  	vector<int> ind; 
+  	vector<int> leng(n+5,0); 
+    for (int i = 0; i < n; i++) { 
+        int x = lower_bound(ind.begin(), ind.end(), values[i]) - ind.begin();
+        if (x == ind.size()) ind.push_back(values[i]);
+        else ind[x] = values[i];
 
-		if(num[m] > v) l = m+1;
-		else h = m-1;
-	}
-	index[l] = pos;
-	num[l] = v;
+        leng[i] = x + 1;
+    } 
+  
+    return leng;
 }
 
-vector<int> lis(vector<int> v) {
-	int size = (int) v.size();
-	vector<int> index(size,-1);
-	vector<int> num(size,-1);
+vector<int> sequence2(vector<int> values) {
+	vector<int> ind; 
+  	vector<int> leng(n+5,0);
+   
+    for (int i = n-1; i >=0 ; i--) { 
+        int x = lower_bound(ind.begin(), ind.end(), values[i]) - ind.begin();
+        if (x == ind.size()) ind.push_back(values[i]);
+        else ind[x] = values[i];
 
-	for(int i = size-1; i >= 0; i--) {
-
-		if(v[i] > num[0]) {
-			index[0] = i;
-			num[0] = v[i];
-		}
-		else bsearch(num,index,v[i],i);
-
-	}
-
-	return index;
+        leng[i] = x + 1;
+    } 
+  
+    return leng;
 }
+
 
 int main() {
-	int n;
 
 	while( scanf("%d", &n) != EOF ) {
-		vector<int> values(n);
-
+		vector<int> values(n+5);
 
 		for (int i = 0; i < n; i++) {
 			int x;
 			cin >> x;
-
 			values[i] = x;
 		}
 
-		vector<int> longest = lis(values);
-		reverse(values.begin(), values.end());
-		vector<int> longest2 = lis(values);
+		vector<int> seq = sequence(values);
+		vector<int> seq2 = sequence2(values);
 
-		int ans = 0;
+		/*
+		for(int i = 0; i < n; i++) printf("%d ", seq[i]);
+		printf("\n");
+		for(int i = 0; i < n; i++) printf("%d ", seq2[i]);
+		printf("\n");
+		*/		
 
-		for(int i = 0; i < longest.size(); i++) {
-			if(longest[i] == -1)
-				break;
+		int ans = 1;
 
-			if(longest[i] == longest2[i])
-				ans = i+1;
-		}
+		for(int i = 0; i < n; i++) ans = max(ans,min(seq[i], seq2[i]) * 2 - 1); 
 
-		if(ans == 0)
-			ans = 1;
-
-		cout << ans*2-1 << endl;
+		cout << ans << endl;
 	}
 	
 	return 0;
