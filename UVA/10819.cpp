@@ -22,7 +22,7 @@ int main() {
 		}
 
 		for(int i= 1; i <= n; i++) {
-			for(int j = m; j >= items[i].first; j--) {
+			for(int j = m; j - items[i].first >= 0; j--) {
 				if(v[j - items[i].first] > 0 || j == items[i].first) v[j] = max(v[j], v[j-items[i].first] + items[i].second);
 	 		}
 		}
