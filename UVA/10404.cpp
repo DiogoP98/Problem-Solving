@@ -1,9 +1,9 @@
 /**
 	Complexidade:
 
-	Explicação: Para cada posição na lista de pedras, vamos verificar qual é a posição que ganha. Como o stan é o primeiro, as posições
+	Explicação: Para cada posição na lista de pedras, vamos verificar se é uma posição ganhadora ou perdedora. Como o stan é o primeiro, as posições
 	com número igual aos números de pedras que podem ser removidas são um posição ganhadora para o stan. O resto das posições, se ao retirarmos
-	qaulquer número de pedras levar a uma posição perdedora então o stan perde, caso cont´raio é também ela uma posição ganhadora.
+	qualquer número de pedras levar a uma posição perdedora então o stan perde, caso contraio é também ela uma posição ganhadora.
 */
 
 
