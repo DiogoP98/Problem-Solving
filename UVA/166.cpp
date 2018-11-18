@@ -40,8 +40,8 @@ void calculate(vector<int> q) {
 				else cal[i] = min(cal[i-coins[j]*k] + k , cal[i]);
 			}
 		}
+		printf("here\n");
 	}
-	
 	printf("%d\n", cal[n]);
 }
 
@@ -52,12 +52,12 @@ int main() {
 	scanf("%d %d %d %d %d %d", &q[0], &q[1], &q[2], &q[3], &q[4], &q[5]);
 
 	while(scanf("%lf", &v) != EOF) {
-		//printf("here\n");
+		printf("here\n");
 		v*= 100;
 		n = (int)v;
-		//printf("%d\n",n);
+		printf("%d\n",n);
 		calculate(q);
-		//printf("here3\n");
+		printf("here3\n");
 		scanf("%d %d %d %d %d %d", &q[0], &q[1], &q[2], &q[3], &q[4], &q[5]);
 	}
 

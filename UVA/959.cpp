@@ -5,17 +5,41 @@
 
 using namespace std;
 
-int calculate(int i, int maxa, int maxb, vector<int> track, vector<int>& dp, int v) {
+int size, maxa,maxb;
+
+int calculate(int i, vector<int> track, vector<int>& dp, int v) {
 	if(dp[i] != INT_MAX) return dp[i];
 
 	for(int j = maxa; j >=-maxb; j-=10) {
-		cout << "here" << endl;
-		if(v/10+j+i < (int) track.size()) {
-			if(v+j*10 <= track[i+v/10+j]) {
-				dp[i] = calculate(i+v/10+j,maxa,maxb,track,dp,v+j*10) + 1;
+		//cout << "i=" << i << " v= " << v << " result=" << (v+j)/10+i << "  n=" << size << endl;
+
+		if((v+j)/10+i+1 < size && v+j >=0) {
+			bool pos = true;
+			for(int k = i+1; k < i+1+(v+j)/10; k++) {
+				if(v+j > track[k]){ 
+					//cout << "entrou" << endl; 
+					pos = false;
+					break;
+				}
 			}
-			else
-				dp[i] = 10000;
+			if(pos) {
+				//cout << "here     " << i+(v+j)/10 << endl;  
+				dp[i] = min(calculate(i+(v+j)/10,track,dp,v+j) + 1,dp[i]);
+			}
+		}
+		else if((v+j)/10+i+1 >= size){
+			bool pos = true;
+			for(int k = i+1; k < size; k++) {
+				if(v+j > track[k]){  
+					pos = false;
+					break;
+				}
+			}
+			if(pos) {
+				//cout << "here2" << endl;
+				dp[i] += 1;
+				break;
+			}
 		}
 	}
 
@@ -27,32 +51,31 @@ int main() {
 	cin >> c;
 
 	for(int i = 0; i < c; i++) {
-		int maxa, maxb;
 		cin >> maxa >> maxb;
 
 		vector<int> track;
 		int n, v;
 		cin >> n >> v;
+		track.push_back(0);
 		while(n!= 0 || v!=0) {
 			for(int j = 0; j < n; j++) track.push_back(v);
 			cin >> n >> v;
 		}
 
-		//for(int j = 0; j < track.size(); j++) cout << track[j] << endl;
+		//for(int j = 0; j < track.size(); j++){ cout << track[j] << " ";cout << endl;}
+		
 
-		vector<int> dp(track.size()+5,INT_MAX);
-		int minc = 0;
+		size = (int) track.size() - 1;
+		vector<int> dp(n+5,INT_MAX);
 
-		for(int i = 0; i < maxa/10; i++) {
-			int c = calculate(i,maxa,maxb,track,dp,i*10);
-			if(c > minc) minc = c;
-		}
+		int c = calculate(0,track,dp,0);
 
-		//for(int j = 0; j < track.size(); j++) cout << dp[j] << " ";
+		for(int j = 0; j < size; j++)cout << j << "= " << dp[j] << endl;
 
-		//cout << endl;
+		cout << endl;
 
-		cout << minc << endl;
+		cout << dp[0] << endl;
+		//cout << "--------------"<< endl;
 	}
 
 	return 0;
