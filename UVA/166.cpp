@@ -52,12 +52,10 @@ int main() {
 	scanf("%d %d %d %d %d %d", &q[0], &q[1], &q[2], &q[3], &q[4], &q[5]);
 
 	while(scanf("%lf", &v) != EOF) {
-		printf("here\n");
 		v*= 100;
 		n = (int)v;
 		printf("%d\n",n);
 		calculate(q);
-		printf("here3\n");
 		scanf("%d %d %d %d %d %d", &q[0], &q[1], &q[2], &q[3], &q[4], &q[5]);
 	}
 
