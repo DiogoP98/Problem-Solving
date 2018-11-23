@@ -1,5 +1,5 @@
 /*
-
+	dewvia dar 4
 */
 
 
@@ -12,50 +12,54 @@ using namespace std;
 
 #define MAX 1000
 
-int n;
+int n, sum;
 vector<int> coins = {5,10,20,50,100,200};
+vector<int> q(10);
 
 int calculate2(int value) {
-	vector<int> cal(value+5, MAX);
-
-	cal[0] = 0;
+	vector<int> cal2(value+5, MAX);
+	cal2[0] = 0;
 	for(int i = 1; i <= value; i++) {
 		for(int j = 0; j < 6; j++) {
-			if(coins[j] <= i) cal[i] = min(cal[i], cal[i-coins[j]] + 1); 
+			if(coins[j] <= i) cal2[i] = min(cal2[i], cal2[i-coins[j]] + 1); 
 		}
 	}
-
-	return cal[value];
+	return cal2[value];
 }
 
-void calculate(vector<int> q) {
-	vector<int> cal(n+5,MAX);
+void calculate() {
+	vector<int> cal(sum+5,MAX);
+	vector<vector<int>> used(n+5,vector<int>(10));
 
 	cal[0] = 0;
 
-	for(int i = 1; i <= n; i++) {
-		for(int j = 0; j < 6; j++) {
-			for(int k = 1; k <= q[j]; k++) {
-				if(coins[j] * k > i) cal[i] = min(k + calculate2(-(i-coins[j]*k)), cal[i]);
-				else cal[i] = min(cal[i-coins[j]*k] + k , cal[i]);
+	for(int i = 0; i < 6; i++) {
+		for(int j = sum; j >= 0; j--) {
+			for(int k = 1; k <= q[i]; k++) {
+				if(coins[i] * k <= j) cal[j] = min(cal[j-coins[i]*k] + k , cal[j]);
 			}
 		}
-		printf("here\n");
 	}
-	printf("%d\n", cal[n]);
+
+	int ans = MAX;
+
+	for(int i = n; i <= sum; i++) ans = min(ans, cal[i]+calculate2(i-n));
+
+	printf("%3d\n", ans);
 }
 
 int main() {
-	vector<int> q(10);
-	double v;
+	int v1, v2;
 
 	scanf("%d %d %d %d %d %d", &q[0], &q[1], &q[2], &q[3], &q[4], &q[5]);
 
-	while(scanf("%lf", &v) != EOF) {
-		v*= 100;
-		n = (int)v;
-		printf("%d\n",n);
-		calculate(q);
+	while(scanf("%d.%d", &v1, &v2) != EOF) {
+		sum = 0;
+		n = v1*100+v2;
+		for(int i = 0; i < 6; i++) {
+			sum += coins[i]*q[i];
+		}
+		calculate();
 		scanf("%d %d %d %d %d %d", &q[0], &q[1], &q[2], &q[3], &q[4], &q[5]);
 	}
 
