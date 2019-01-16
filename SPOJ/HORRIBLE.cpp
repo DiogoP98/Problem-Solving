@@ -1,6 +1,9 @@
 /**
-	Complexidade: O(log(n) * q)
 	Ajudas: https://www.geeksforgeeks.org/binary-indexed-tree-range-update-range-queries/
+
+	Complexidade: O(nlogn + log(n) * c), n numero de elementos, c numero de comandos
+
+	Explicacao: 
 */
 
 

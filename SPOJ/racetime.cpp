@@ -1,4 +1,5 @@
 /**
+	Complexidade: O(sqrt(n) + sqrt(n) * log(n)), n numero de vacas
 
 	Explicação: Dividimos o array inicial em sqrt(n) partes e guardamos num array de duas dimensões. Cada sub-array desse array tem as posições
 	de x a x+sqrt(n) ordenadas por ordem crescente. Assim quando fizermos uma query sobre um intervalo, se o intervalo for um sub-array completo,

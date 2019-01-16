@@ -1,11 +1,14 @@
 /**
-    
+    Complexidade: O(n + logn), n numero de estabulos
+
     Quando se trata de um update, vamos percorrer os intervalos da segment tree até encontrar o nó 
     que pretendemos, onde lhe alteramos o valor e propagamos aos filhos. Se no caminho até este nó
     houverem nós que tenham sido propagados e o valor não tenha sido alterado, alteramos durante esta procura
     e propagamos para os filhos. No entanto os valores so sao alterados se nos intervalos acima do intervalo
-    que prentedemos alterar, tenham  sido alterados um número impar de vezes, visto que só assim ´é que as luzes
+    que prentedemos alterar, tenham sido alterados um número impar de vezes, visto que só assim é que as luzes
     mudam de estado.
+    Quando se trata de uma query fazemos o meso no que toca a lazy propagation e depois vamos procurar o intervalo
+    [x,y] e calcular o valor pretendido.
 */
 #include <iostream>
 #include <cstdlib>

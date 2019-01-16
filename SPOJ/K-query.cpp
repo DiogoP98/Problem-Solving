@@ -1,11 +1,15 @@
 /**
+	Complexidade: O(j + nlogn), j e o numero de query mais update, n e o numero de items na arvore
 
 	Explicação: Colocamos as queries e as inserções num vector, sendo o conteúdo
-	desse vetor uma estrtura que contém invervalos[i,j] para as range queries
-	o valor index para inserções e para saber qual o número da query, um avlor k, 
-	que é o valor que queremos inserir no caso das inserções, ou o valor
-	sobre o qual queremos saber quantos número são maiores que ele no caso das queries.
-	Ordenamos este vetor, e depois vamos percorre-lo. Se a ação for uma inserção
+	desse vetor uma estrutura que contém:
+	invervalos[i,j] para as range queries
+	o tipo da ação a realizar
+	o valor index para saber qual o número da query ou para saber onde inserir
+	um valor k, valor sobre o qual queremos saber quantos número são maiores que ele e sobre o qual vamos realizar
+	a ordenação do vetor.
+	Ordenamos este vetor, e depois vamos percorre-lo. Se a ação for uma inserção, fazemos um update, caso contrário,
+	vamos fazer query na tree no intervalo que e suposto.
 */
 
 

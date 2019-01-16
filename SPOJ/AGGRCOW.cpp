@@ -1,3 +1,15 @@
+/*
+	Complexidade: O(nlog(n)), onde n e o numero de estabulos
+
+	Começamos por ordenar os estabulos por ordem crescente de maneira a ser mais facil calcular as distancias entre
+	os estabulos. De seguida, fazemos pesquisa binaria sobre a distancia. Para cada valor m calculamos o numero de vacas
+	que e possivel ter segundo as restricoes e se for maior ou igual que o numero de vacas pedido entao significa que 
+	podemos conseguir ter ainda uma maior distancia minima e por isso aumentamos o lower bound para m. Caso contrario
+	significa que a distancia tem que ser menor. 
+
+*/
+
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -33,6 +45,7 @@ int main() {
 			
 			int fs = v[0];
 			int ncows = 1;
+
 			for (int j = 1; j < s; j++) {
 				if(v[j] - fs >= m) {
 					ncows++;
@@ -46,7 +59,7 @@ int main() {
 			}
 
 			else
-				h = m -1;
+				h = m - 1;
 		}
 
 		cout << mm << endl;

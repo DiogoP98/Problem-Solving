@@ -1,7 +1,10 @@
 /**
-	O(m * nlogn) - m- numero de casos, n tamanho da sequencia.
-	Como pesquina ternaria tem complexidade O(logn) e em cada ciclo da pesquisa percorremos o vetor h e c, que têm
-	tamanho n, a complexidade total da pesquina ternaria vai ficar O(nlogn). Isto para m casos teste.
+	Complexidade: O(nlogn) - n tamanho da sequencia.
+
+	Vamos realizar pesquisa ternaria sobre o tamanho dos edificios. Para cada valor intermédio, percorremos o vetor
+	que tem as alturas do edificios e verificamos qual seria o custo total de mudar todos os edificios para essa mesma
+	altura. Se a soma do valor mais pequeno for maior significa que precisamos de um valor maior de maneira a que o custo 
+	seja menor e por isso temos que subir o limite inferior. Caso contrário, diminuimos o limite superiror.
 */
 
 #include <iostream>

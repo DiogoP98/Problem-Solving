@@ -1,5 +1,5 @@
 /**
-	Complexidade: O(Klog(K))
+	Complexidade: O(Klog(K)), K numero de estradas.
 	
 	Explicação: Começamos por guardar as ligações num vetor de pares e ordenamo-lo por ordem decrescente. Depois disto só precisamos de percorrer o vetor
 	e ver quantas estradas anteriores a esta têm um nó terminal que seja menor do que o nó terminal da estrada atual.
