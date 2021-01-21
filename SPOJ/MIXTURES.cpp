@@ -1,7 +1,12 @@
 /*
+    Ajudas: https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
 
+    Complexidade: O(n^3).
 
-	Ajudas: https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
+    Explicacao: Para encontrar o minimo, vamos ter que calcular todas as misturas possiveis, e guardar o minimo. Para isso, vamos
+    calculando misturas e guarda-las em memoria, e cada vez que calculamos uma mistura nova, vamos buscar os valores guardados em memoria,
+    para auxilio. Em memoria é mantida uma matriz de pairs, sendo que o primeiro valor é a cor corresponde da mistura, e o segundo
+    é a quantidade de fumo gerada até então.
 */
 
 
@@ -19,7 +24,8 @@ void matrixChain(vector<int> m) {
 
 	for (int i=0; i<n; i++) { 
 		v[i].resize(n+5);
-        v[i][i].first = m[i];    } 
+        v[i][i].first = m[i];    
+    } 
   
     for (int len=2; len <= n; len++) {
         for (int i=0; i<n-len+1; i++)  { 

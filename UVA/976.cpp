@@ -1,3 +1,15 @@
+/**
+	Complexidade: O(R*C), sendo r o numero de linhas e c o numero de colunas.
+
+	Explicacao: Comecamos por fazer dois flood-fill de maneira a encontrarmos as margens superior e inferior.
+	Depois, utilizando dp, onde para cada posicao e cada numero de pontes restantes vamos calcular o minimo. Para o minimo de cada uma
+	destas posicoes temos duas hipoteses: colocar uma ponte nessa posicao x, que liga as margens superiores e inferiores desse mesmo x
+	e calcular o custo de colocar b-1 pontes, a partir da poiscao atual - s, sendo s a distancia necessaria entre pontes. Outra hipotese
+	e nao colocar a ponte na posicao atual e calcular a partir dai
+
+
+*/
+
 #include <cstdio>
 #include <vector>
 #include <climits>
@@ -51,6 +63,7 @@ int calculate(int pos, int b2) {
 		dp[pos][b2] = 0;
 	else
 		dp[pos][b2] = min(dp[pos][b2], min(calculate(pos-s-1,b2-1)+limits[1][pos]-limits[0][pos]-1,calculate(pos-1,b2)));
+	
 	return dp[pos][b2];
 }
 
@@ -78,7 +91,6 @@ int main() {
 
 		floodfill(0,0,0);
 		floodfill(r-1,0,1);
-		//for(int i = 0; i < c; i++) printf("%d %d\n", limits[0][i]+1, limits[1][i]+1);
 
 		int ans = calculate(c-1,b);
 

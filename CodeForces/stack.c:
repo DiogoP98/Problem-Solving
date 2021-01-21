@@ -1,0 +1,41 @@
+stack.c:
+
+InstrList* compile_fmt(Fmt* fmt)
+{ 
+  instr_kind k = fmt->kind == FMT_INPUT ? iRD : iWR;
+  Instr* instr = mk_instr(k, mk_address_regist(reg_get(fmt->id)), NULL, NULL);
+  return mk_instrList(instr,NULL);
+}
+
+Address* mk_address_regist(regist reg)
+{
+  Address* a = (Address*)malloc(sizeof(Address));
+  a->kind = ADDR_REGIST;
+  a->core.reg = reg;
+  return a;
+}
+
+Instr* mk_instr(instr_kind kind, Address* addr1, Address* addr2, Address* addr3)
+{
+  Instr* i = (Instr*)malloc(sizeof(Instr));
+  i->kind = kind;
+  i->addr1 = addr1;
+  i->addr2 = addr2;
+  i->addr3 = addr3;
+  return i;
+}
+
+mips.c:
+void write_read(Instr* instr)
+{
+  printf("li $v0, 5\n");
+  printf("syscall\n");
+  printf("add %s, $v0, $zero\n", mips_reg_get(instr->addr1->core.reg));
+}
+
+void write_write(Instr* instr)
+{
+  printf("li $v0, 1\n");
+  printf("add $a0, %s, $zero\n", mips_reg_get(instr->addr1->core.reg));
+  printf("syscall\n");
+}

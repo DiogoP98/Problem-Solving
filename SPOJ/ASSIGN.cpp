@@ -1,6 +1,10 @@
 /*
-	Complexidade temporal: O(log(k)), k 
 	Ajudas: https://www.geeksforgeeks.org/bitmasking-and-dynamic-programming-set-1-count-ways-to-assign-unique-cap-to-every-person/
+
+	Complexidade: O(n * log(k)), sendo k o numero de bits
+
+	Explicacao: Comecando com todos os bits ligados na bitmask, continuamos ate 0 diminuindo a bitmask por 1 de cada vez. Para cada bitmask em particular,
+	 			calculamos o número de bits ligados, o que nos diz em que aluno estamos.
 */
 
 #include <cstdio>

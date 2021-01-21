@@ -1,7 +1,9 @@
 /**
-	Complexidade: O(N^3)
+	Complexidade: O(n^3), n tamanho do quadrado 
 
-	Explicação: 
+	Explicação: Vamos percorrer a matriz por linhas. Para cada iteração vamos calculando a soma dos sub-retangulos 
+	i a n, e guardar a soma das colunas no vector sumt. De seguida aplicamos o kadane ao vetor sumt, o que nos obtem
+	a soma maxima de cada sub-retangulo. 
 
 */
 
@@ -12,7 +14,6 @@
 #include <algorithm>
 
 using namespace std;
-
 
 int kadane(vector<int> sumt, int n) {
 	int maxSum = INT_MIN, sum = 0;
@@ -48,6 +49,7 @@ int main() {
 		fill(sumt.begin(), sumt.end(), 0);
 		for(int j = i; j < n; j++) {
 			for(int k = 0; k < n; k++) sumt[k] += m[j][k];
+
 		int sum = kadane(sumt, n);
 
 		if(sum > max)

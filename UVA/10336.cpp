@@ -1,70 +1,94 @@
+/**
+	Complexidade: O(h*w), sendo h a altura e w a largura.
+	
+	Explicacao: Fazemos um floodfill, que percorre os vizinhos a partir de um no, e se o vizinho for igual ao no inicial, fazemos isso recursivamente
+	para esse mesmo no. Verificamos isto para todos os nos que nao forem verificados, e cada vez que um no nao estiver visitado, 
+	e tivermos que fazer um floodfill a partir deste, incrementamos em um o seu counter. Vamos depois criar um vetor de pairs, que contem
+	a letra e o numero de estados. Ordenamos este array e depois e so imprimir. 
+*/
+
 #include <iostream>
 #include <vector>
-#include <map>
+#include <algorithm>
 
 
 using namespace std;
 
+#define MAX 30
+
 int w,h;
-int ar[26];
+vector<vector<char>> adj(MAX, vector<char>(MAX));
+vector<vector<bool>> visited(MAX, vector<bool>(MAX));
+vector<int> counter(MAX);
+vector<pair<char,int>> order;
 
-void checkComp(char c, int i, int j,vector< vector<int> > comp, vector< vector<char> >& m,int n) {
+void flood(int x, int y) {
+	visited[x][y] = true;
 
-	if(i-1>=0 && m[i-1][j]==c) {
-		comp[i-1][j] == n;
-		checkComp(c,i-1,j,comp,m,n);
+	if(x + 1 < w && !visited[x+1][y]) {
+		if(adj[x+1][y] == adj[x][y]) flood(x+1,y);
 	}
 
-	if(j-1>=0 && m[i][j-1]==c) {
-		comp[i][j-1] == n;
-		checkComp(c,i,j-1,comp,m,n);
+	if(x - 1 >= 0 && !visited[x-1][y]) {
+		if(adj[x-1][y] == adj[x][y]) flood(x-1,y);
 	}
 
-	if(i+1<w && m[i+1][j]==c) {
-		comp[i+1][j] == n;
-		checkComp(c,i+1,j,comp,m,n);
+	if(y + 1 < h && !visited[x][y+1]) {
+		if(adj[x][y+1] == adj[x][y]) flood(x,y+1);
 	}
 
-	if(j+1<h && m[i][j+1]==c) {
-		comp[i][j+1] == n;
-		checkComp(c,i,j+1,comp,m,n);
+	if(y - 1 >= 0 && !visited[x][y-1]) {
+		if(adj[x][y-1] == adj[x][y]) flood(x,y-1);
 	}
-} 
 
+	return;
+}
+
+bool compare(const pair<int,int> &a,  const pair<int,int> &b) {
+	if(a.second == b.second) 
+		return a.first < b.first;
+		
+	return a.second > b.second;
+}
 
 int main() {
-	int n; 
-
+	int n;
 	cin >> n;
 
-	for (int i = 0; i < n; i++) {
-
+	for(int i = 0; i < n; i++) {
 		cin >> w >> h;
-		vector< vector<char> > m(w);
-		vector< vector<int> > comp(w);
 
-		for (int j = 0; j < w; j++) {
-			m[j].resize(h);
-			comp[j].resize(h);
-
-			for (int k = 0; k < h; k++) {
-				cin >> m[j][k];
-				comp[j][k] = -1; 
+		for(int j = 0; j < w; j++) {
+			for(int k = 0; k < h; k++) {
+				cin >> adj[j][k];
 			}
 		}
 
-		int num = 0;
-		for (int j = 0; j < w; j++) {
-			for (int k = 0; k < h; k++) {
-				if (comp[j][k] == -1) {
-					checkComp(m[j][k], j, k, comp, m, num);
-					ar[(int)m[j][k]-'a']++;
-					num++;
+		for(int j = 0; j < w; j++) {
+			for(int k = 0; k < h; k++) {
+				if(!visited[j][k]) {
+					counter[adj[j][k]-'a']++;
+					flood(j,k);
 				}
-
 			}
 		}
-	}
 
+		cout << "World #" << i+1 << endl;
+
+
+		for(int j = 0; j < MAX; j++)
+			if(counter[j] != 0)
+				order.push_back(make_pair((j+'a'), counter[j]));
+
+		sort(order.begin(),order.end(), compare);
+
+		for(int j = 0; j < (int) order.size(); j++) 
+			cout << order[j].first << ": " << order[j].second << endl;
+		
+		fill(counter.begin(), counter.end(), 0);
+		order.clear();
+
+		for(int j = 0; j < MAX; j++) fill(visited[j].begin(), visited[j].end(), false);
+	}
 	return 0;
 }

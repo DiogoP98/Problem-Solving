@@ -1,9 +1,9 @@
 /**
 	Complexidade: O(logn). 
 	
-	Explicação: Para fazermos range update, vamos atualizar todos os nós pais de l e l, e depois subtrair o valor que adicionamos aos nós que são maiores que r, ou seja,
+	Explicação: Para fazermos range update, vamos atualizar todos os nós pais de l e r, e depois subtrair o valor que adicionamos aos nós que são maiores que r, ou seja,
 	que não pertencem ao intervalo.
-	A operação de query é uma sum nromal em BITs.
+	A operação de query é uma sum normal em BITs.
 */
 
 

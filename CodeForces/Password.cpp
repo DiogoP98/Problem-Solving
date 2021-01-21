@@ -1,3 +1,13 @@
+/**
+	Complexidade: O(n), sendo n o tamanho da string 
+
+	Explicacao: Comecamos por executar a failure function do KMP, o que nos da um vetor f. Neste vetor,
+	estao guardados os possiveis shifts. Assim, vamos aceder á ultima posicao, e vamos percorrer o vetor f
+	para encontrar um valor igual ao mesmo. Se econtrarmos significa que existem 3 sequencias iguais no string dada,
+	logo imprimimos essa sequencia. Caso contrário, siginifica que nao existe.
+
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>

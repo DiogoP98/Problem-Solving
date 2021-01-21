@@ -1,3 +1,15 @@
+/**
+	Complexidade: O(n * v), sendo n o numero de casas, v a velocidade possivel
+
+	Explicacao: Usando dp, para cada posicao e velocidade atual, vamos calcular o minimo de mudancas
+	e velocidade precisas. Para isso, para cada velocidade possivel na velocidade atual, vamos ver se 
+	ao percorrer as proximas casas com essa velocidade, nenhum limite e ultrapassado. Se nao for, entao
+	vamos buscar o numero de mudancas de velocidade a partir da casa a qual vamos ter e calculamos assim o minimo
+	para cada posicao da matriz. 
+
+*/
+
+
 #include <iostream>
 #include <vector>
 #include <climits>
@@ -17,7 +29,7 @@ vector<int> track(MAXN);
 int calculate(int i, int v) {
 	if(dp[i][v] != MAX) return dp[i][v];
 
-	for(int j = maxa; j >=-maxb; j-=10) {
+	for(int j = maxa; j =-maxb>; j-=10) {
 		if((v+j)/10+i+1 <= size && v+j > 0) {
 			bool pos = true;
 

@@ -8,17 +8,20 @@ using namespace std;
 #define FILL 10000
 
 vector<int> c(MAXC);
-vector<vector<int>> dp(MAXL, vector<int>(MAXC));
+vector<vector<int>> dp(MAXL, vector<int>(MAXL));
 int n, l;
 
-int calculate(int pos, int cut,int size) {
-	if(dp[pos][cut] != FILL) return dp[pos][cut];
+int calculate(int pos, int size) {
+	if(size-pos == 1) return 0;
 
-	for(int i = 0; i < n; i++) {
-		dp[pos][cut] = min(dp[pos][cut], calculate(pos+c[i]-1,c[i], size-c[i]) + size);
-	}
+	if(dp[pos][size] != -1) return dp[pos][size];
 
-	return dp[pos][cut];
+	dp[pos][size] = FILL;
+
+	for(int i = pos; i < pos+size - 1; i++)
+		dp[pos][size] = min(dp[pos][size], calculate(pos,i) + calculate(i,pos+size-1) + c[size]- c[pos]);
+
+	return dp[pos][size];
 }
 
 int main() {
@@ -27,11 +30,11 @@ int main() {
 	while(l != 0) {
 		cin >> n;
 
-		for(int i = 0; i < n; i++) cin >> c[i];
+		for(int i = 1; i <= n; i++) cin >> c[i];
 
-		for(int i = 0; i < l; i++) fill(dp[i].begin(),dp[i].end(), FILL);
+		for(int i = 0; i < l; i++) fill(dp[i].begin(),dp[i].end(), -1);
 
-		int ans = calculate(0,0, l);
+		int ans = calculate(1,l);
 
 		cout << "The minimum cutting is " << ans << endl;
 

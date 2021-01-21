@@ -1,3 +1,16 @@
+/*
+
+	O(n + k * log(n)), n numero de numeros e k numero de operacoes.
+
+	Quando estamos a ler o array de numeros so necessitamos de saber se eles sao postitivos, negativos ou zero,
+	visto que estamos a realizar uma multiplicaçao e apenas necessitamos de saber o sinal da mesma.
+	Assim em cada intervalo da arvore vamos ter o sinal da multiplicaçao nesse mesmo intervalo.
+	Quando fazemos um update temos que verificar todos os intervalos que podem ser afetados pela alteracao do valor,
+	e na query se o intervalo da query corresponder a um sub-intervalo ou a um intervalo da arvore basta ir buscar o valor,
+	caso contrario e fazer a multiplicacao dos diferentes intervalos.
+
+*/
+
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>

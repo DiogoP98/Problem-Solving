@@ -1,3 +1,20 @@
+/*
+	Complexidade: O(n + qlog(n)), onde n e o numero de inteiros e q o numero de queries.
+	
+	Começamos por guardar as frequencias existentes. Para isto percorremos o vetor de numeros e como sabemos que
+	o vetor esta ordenado basta compararmos posicoes adjacentes. Para cada sequencia de numeros guardamos, o numero 
+	de vezes que o numero ocorre nessa sequencia, e o sitio onde esta comeca e onde esta acaba.
+	Depois de termos o vetor de frequencias construido, construimos a segment tree, onde em cada intervalo,
+	tem o valor o numero de ocorrencias do numero que ocorre com mais frequencia.
+	Quando nos sao dados os intervalos das queries temos 3 casos possiveis. O intervalo ser o sub-intervalo
+	de uma sequencia do mesmo numero e nesse caso o numero de ocorrencias vai ser o tamanho do intervalo.
+	Se pertencer a 2 sequencias diferentes temos que ir buscar o limite superior da primeira e o inferior da segunda
+	e ver qual e maior. No melhor caso possivel, os valores dados correspondem a um intervalo da segment tree, 
+	e assim basta aceder a arvore.
+
+*/
+
+
 #include <iostream>
 #include <cstdlib>
 #include <cstring>

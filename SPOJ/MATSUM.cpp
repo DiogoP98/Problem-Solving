@@ -1,6 +1,17 @@
 /**
+	Ajudas: https://www.geeksforgeeks.org/two-dimensional-binary-indexed-tree-or-fenwick-tree/
+
 	Complexidade: O((nm+q)*log(nm)), q numbero de queries, n a coordenada x maxima no update e m a 
 	coordenada y.
+
+	Explicacao: Cada nó da BIT é também outra BIT. Ao fazermos update, a BIT é atualizada de (x,y) até (n,n).
+	Para a operação query, é nos dado um sub-retângulo da matriz, e como cada vez que a funcao sum é chamada, 
+	a soma vai ser de todos os valores entre (x,y) e (0,0), para obtermos a soma certa precisamos da seguinte formula:
+	sum(x2,y2) - sum(x2,y1-1) - sum(x1-1,y2) + sum(x1-1, y1-1). Como dito antes o sum(x2,y2), que representa o canto
+	superior direito do sub-retângulo vai obter a soma entre (x2,y2) e (0,0), no entanto se o canto inferior esquerdo
+	for maior do que isso estamos a obter uma soma maior do que aquela que queremos. Logo a sum(x2,y2) precisamos de remover
+	a sum(x2,y1-1) e a sum(x1-1,y2). No entanto, ao subtrair estas duas estamos a subtrair duas vezes o espaço
+	(x-1,y-1), (0,0), e por isso temos que somar esse valor ao resultado obtido. 
 
 */
 

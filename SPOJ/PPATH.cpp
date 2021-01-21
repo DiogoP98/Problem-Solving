@@ -1,3 +1,12 @@
+/**
+	Complexidade: O(n).
+
+	Explicacao: Vamos realizar um bfs, de maneira a cada iteracao, descobrir todos os numeros a que se pode chegar, substituindo apenas um digito
+	do numero atual. Para cada numero gerado, verficamos se e primo e se nao o geramos anteriormente, e se estas condicoes forem satisfeitas,
+	o numero e adicionado a fial do bfs. Fazemos isto, ate chegar ao numero desejado.
+
+*/
+
 #include <iostream>
 #include <vector>
 #include <queue>

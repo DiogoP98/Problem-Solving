@@ -1,5 +1,11 @@
 /*
-	dewvia dar 4
+	Complexidade: O(s * q), onde s e a quantidade de dinheiro possivel e q a quantidade de cada moeda. 
+
+	Explicacao: Para cada valor, vamos percorrer a quantidade total de dinheiro possivel, e o numero possivel de vezes que podemos usar o mesmo. 
+	Se a quantidade de dinheiro que formamos, com k vezes o valor, for menor ou igual á quantidade total de dinheiro, então o numero de moedas, 
+	vai ser k + o numero de moedas que precisamos para o valor restante.
+	Depois de completar a matriz, vamos percorrer, os valores entre o valor do pagamento e a quantidade de dinheiro possivel, e a resposta
+	vai ser o numero de moedas que conseguimos obter, usando uma certa quantidade, mais o numero de moedas do troco, se usarmos essa qunatidade.
 */
 
 

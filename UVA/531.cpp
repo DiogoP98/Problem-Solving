@@ -1,3 +1,18 @@
+/**
+	Ajudas: https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
+
+	Complexidade: O(n*m)
+
+	Explicacao: Para descobrir a longest common sequence, vamos percorrer o primeiro texto, e para cada palavra do mesmo, vamos
+	percorrer o segundo texto. Se alguma palavra for igual à que estamos a analisar do primeiro texto, então a sequência vai aumentar
+	em 1, em relação á palavra anterior. Se forem diferentes então vai ser a maior entre a maior sequência da palvra anterior 
+	dos dois textos.
+	Para construir o texto em comum basta percorrermos os dois textos ao mesmo tempo, e se as palavras forem iguais inserimos na
+	string a imprimr, se forem diferentes, vamos verificar a matriz construida anteriormente. 
+
+*/
+
+
 #include <vector>
 #include <iostream>
 #include <cstdlib>

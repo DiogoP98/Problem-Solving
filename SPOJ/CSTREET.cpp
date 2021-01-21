@@ -1,3 +1,12 @@
+/**
+	Complexidade: O(log(n) * e), sendo n o numero de edificios, e "e" o numero de ruas.
+
+	Explicacao: Aplicamos o algoritmo de Prim, de maneira a obter a arvore de peso minimo. Isto e, a arvore, tal que todos os nos estao ligados,
+	e o custo total de todas as ligacoes e o minimo. Depois, de o obter o custo, neste caso o tamanho da rua, basta multiplicar pelo custo de cada 
+	furlong e obtemos o custo total. 
+
+*/
+
 #include <iostream>
 #include <vector>
 #include <queue>

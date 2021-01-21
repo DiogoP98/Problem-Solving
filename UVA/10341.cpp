@@ -1,6 +1,12 @@
 /*
-	
 	Ajudas: http://www.mathcs.emory.edu/~cheung/Courses/170/Syllabus/07/bisection.html
+
+	Complexidade: O(logn)
+
+	Segundo o enunciado a solucao esta entre 0 e 1. Portanto se ao substituirmos o x por 1 e por 0 e multiplicarmos o
+	resultado dos dois, se este for negativo significa que existe soluçao pois tem sinal diferente, caso contrario
+	nao existe soluçao. Se soubermos que existe solução basta fazer pesquisa binária de maneira a diminuir o intervalo,
+	até chegar a um resultado com 4 casas decimais corretas.
 */
 
 #include <iostream>

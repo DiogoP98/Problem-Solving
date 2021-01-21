@@ -3,7 +3,8 @@
 
 	Complexidade: O(n^3), onde n e o numero de currencys
 
-	Explicacao: 
+	Explicacao: Aplicamos o algoritmos de Floyd Warshall, e se para algum no, existir um caminho de si para si proprio, tal
+	que o custo desse caminho e maior do que 1, entao significa, que pode existir lucro.
 
 */
 

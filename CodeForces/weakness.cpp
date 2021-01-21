@@ -1,3 +1,16 @@
+/*
+	Complexidade: O(n * (logn)^2)
+
+	Realizamos pesquisa ternária pelos valor. Temos 2 vetores intermédios, um para cada valor intermédio. Nestes
+	vetores guardamos os valores intermédios, usados depois para obter as somas.
+	Como queremos a maior soma absoluta, temos que percorrer os dois vetores duas vezes, de modo a obter a soma máxima
+	quer nos números negativos quer nos números positivos. No final comparamos a soma máxima que pode ser obtida
+	para os dois valores intermédios e mudamos os limites dependendo disso mesmo. Realizamos 100 iterações destas
+	para ter a certeza que o erro absoluto não excede 10^-6.
+
+*/
+
+
 #include <iostream>
 #include <vector>
 
@@ -29,6 +42,7 @@ int main() {
 
 		vector<double> v2(n);
 		vector<double> v3(n);
+
 		for(int i = 0; i < n; i++) {
 			v2[i] = v[i] - m1; //valores intermedios
 			v3[i] = v[i] - m2;

@@ -1,3 +1,12 @@
+/**
+	Complexidade: O(N^3)
+
+	Explicacao: Comecamos por calcular a soma de numeros ate cada posicao e guardamos num array sum. Depois disso vamos testa
+	os varios sub-intervalos á procura de uma soma maxima. Seja um sub-intervalo, [i,i+len], vamos tentar maximizar este mesmo intervalo.
+	Para isso, temos que escolher o melhor intervalo, tal que, supondo que o jogador adversario vai jogar de maneira otima, consiga o menor 
+	numero de pontos possivel.
+*/
+
 #include <iostream>
 #include <vector>
 #include <climits>
@@ -18,6 +27,7 @@ void calculate() {
 				s = sum[i+len]-sum[i-1];
 			else
 				s = sum[i+len];
+
 			for(int k = 1; k <= len; k++) { 
 				v[i][i+len] = max(v[i][i+len], s-min(v[i+k][i+len],v[i][i+len-k]));
 				v[i][i+len] = max(v[i][i+len],s);

@@ -1,3 +1,11 @@
+/*
+    Ajudas: https://codeforces.com/blog/entry/52991
+
+    Complexidade: O(logn)
+
+    TODO
+*/
+
 #include <iostream>
 #include <cstdlib>
 

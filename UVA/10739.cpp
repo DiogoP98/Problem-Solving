@@ -1,3 +1,13 @@
+/**
+	Complexidade: O(n^2).
+
+	Explicacao: De maneira a encontrar o numero minimo de operacoes, vamos construir uma matriz parecida com a de longest commom
+	subsequence. No entanto, cada vez que encontramos uma letra igual, significa que nao e preciso fazer nenhuma alteracao. Em cada posicao
+	da matriz, vai estar o numero minimo de alteracoes, e quando estamos numa certa posicao, o valor da mesam vai ser o minimo entre:
+	o numero de operacoes necessarias ate á letra anterior + 1 caso sejam diferentes, ou igual ao mesmo se forem iguais e o numero de operacoes
+	da string anterior mais 1.
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>

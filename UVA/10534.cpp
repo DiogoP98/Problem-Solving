@@ -1,3 +1,12 @@
+/**
+	Complexidade: O(n*log(n)), n e o tamanho da sequencia de input.
+
+	Explicacao: Comecamos por calcular duas sequencias, uma corresponde á ordem crescente e outra correspondente á orderm decrescente.
+	Para cada uma destas, vamos ter um array que nos guarda, em cada posicao a maior sequencia até aí. Assim, apenas necessitamos de percorrer estes
+	vetores, e a resposta vai ser o maximo entre o compirmento minimo entre os dois vetores numa dada posicao * 2 - 1, visto que em cada
+	posicao dos vetores apenas temos n+1 elementos, ou seja, apenas os elementos de um lado da sequencia.
+*/
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -39,7 +48,7 @@ vector<int> sequence2(vector<int> values) {
 
 int main() {
 
-	while( scanf("%d", &n) != EOF ) {
+	while(scanf("%d", &n) != EOF ) {
 		vector<int> values(n+5);
 
 		for (int i = 0; i < n; i++) {

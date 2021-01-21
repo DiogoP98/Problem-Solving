@@ -20,7 +20,7 @@ int n, m;
 
 long long int query(int i) {
 	long long int sum = 0;
-	i+= 1;
+
 	while(i  > 0) {
 		sum += bitree[i];
 
@@ -32,8 +32,6 @@ long long int query(int i) {
 }
 
 void update(int i, int val) {
-	i += 1;
-
 	while (i <= m) {
 		bitree[i] += val;
 
@@ -42,8 +40,8 @@ void update(int i, int val) {
 }
 
 void build () {
-
-	for(int i  = 1 ; i <= m; i++) bitree[i] = 0;
+	for(int i  = 1 ; i <= m; i++) 
+		bitree[i] = 0;
 }
 
 int main() {
@@ -56,6 +54,7 @@ int main() {
 		scanf("%d %d %d", &n, &m, &k);
 		build();
 		vector<pair<int,int>> v(k+3);
+		
 		for(int j = 0; j < k; j++) {
 			int v1, v2;
 			scanf("%d %d", &v1, &v2);
@@ -67,8 +66,8 @@ int main() {
 		long long int sum = 0;
 
 		for(int j = 0; j < (int) v.size(); j++) {
-			update(v[j].second,1);
-			sum += query(v[j].second-1);
+			update(v[j].second + 1,1);
+			sum += query(v[j].second);
 		}
 
 		printf("Test case %d: %lld\n", i+1, sum);

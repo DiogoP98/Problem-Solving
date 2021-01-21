@@ -1,3 +1,12 @@
+/**
+	Complexidade: O(n); 
+
+	Explicacao: Comecamos por executar a failure function do KMP, o que nos da um vetor f. Neste vetor,
+	estao guardados os possiveis shifts. Vamos depois percorrer o vetor e para cada posicao, se o valor
+	no vetor menos a posicao atual dividir a posicao atual, entao significa que e uma repeticao.
+
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
